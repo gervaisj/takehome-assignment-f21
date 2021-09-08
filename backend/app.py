@@ -122,7 +122,8 @@ def init_dataclass(data: dict, klass: Type[TDataclass]) -> TDataclass:
 def create_show():
     request_json = request.get_json()
     if not isinstance(request_json, dict):
-        return create_response(status=422, message=f"JSON body must be of type 'object': {type(request_json)!r}")
+        return create_response(status=422,
+                               message=f"JSON body must be of type 'object': {type(request_json).__name__!r}")
 
     try:
         show: ShowPayload = init_dataclass(request_json, ShowPayload)
@@ -137,7 +138,8 @@ def create_show():
 def update_show(id):
     request_json = request.get_json()
     if not isinstance(request_json, dict):
-        return create_response(status=422, message=f"JSON body must be of type 'object': {type(request_json)!r}")
+        return create_response(status=422,
+                               message=f"JSON body must be of type 'object': {type(request_json).__name__!r}")
 
     show = db.updateById('shows', int(id), request_json)
     if show is None:
