@@ -1,11 +1,19 @@
 <template>
-  <!-- PART 4: Add your code here -->
-  <div></div>
+  <div>
+    <p>{{ name }}</p>
+    <Counter :initial-count="episodes_seen" label="Episodes seen: "/>
+  </div>
 </template>
 
 <script>
-// PART 4: Add your code here
-export default {};
+import Counter from "./Counter";
+
+export default {
+  components: {
+    Counter,
+  },
+  props: ['id', 'name', 'episodes_seen']
+};
 </script>
 
 <style>
